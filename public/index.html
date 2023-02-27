@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- otherBotNames: Neo, Boo -->.
+
+  <title>Sam-Scraper</title>
+
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://kit.fontawesome.com/a2fa536777.js" crossorigin="anonymous">
+
+  </script>
+
+</head>
+
+<body>
+
+  <header>
+
+    <h1>Sam-code</h1>
+
+    <input type="checkbox" id="nav-button-check">
+
+    <label for="nav-button-check" class="nav-button">
+
+      <label for="nav-button-check" class="btn-line"></label>
+
+      <label for="nav-button-check" class="btn-line"></label>
+
+      <label for="nav-button-check" class="btn-line"></label>
+
+    </label>
+
+    <nav id="nav">
+
+      <ul class="main-nav-ul">
+
+        <li><a active href="#">Home</a></li>
+
+        <li> <a href="#about">About</a></li>
+
+        <li class="parent-of-inline-ul">
+
+          <input type="checkbox" name="" id="tool-check" value="" />
+
+        <label for="tool-check" id="tools-check">Tools <span id="upDownIco"></span> </label>
+
+        <ul class="inline-nav-ul" id="toolsUl">
+
+          <li><a href="#">webpage-scraper</a></li>
+
+          <li><a href="https://cuber-dev.github.io/Max-code-generator/">image-url-genrator</a></li>
+
+        </ul>
+
+      </li>
+
+      <li><a href="#contact">Contact</a></li>
+
+    </ul>
+
+  </nav>
+
+</header>
+
+<main>
+
+  <section id="scraped-code" class="sections-container">
+
+    <h3 class="main-heading" style="text-align:center;">
+
+      Web Scraper</h3>
+
+      <div class="form">
+
+        <div class="field">
+
+        <label for="pageUrl">Web Page URL:</label>
+
+        <br/>
+
+        <input type="url" id="pageUrl" placeholder="https://example.com/" name="pageUrl">
+
+        <span class="inputErr" id="urlErr">
+
+          Please enter the correct URL for a website 
+
+        </span>
+
+        </div>
+
+        <div id="customValue" class="field" style="display:block;">
+
+          <label for="htmlValue">Enter the Selector value:</label>
+
+          <span style="display:flex;">
+
+          <input type="text" id="htmlValue" name="htmlValue" placeholder=".continer">
+
+          <span class="question">
+
+           <span class="question-tip-text top">
+
+             select elements from an HTML document using CSS selectors.<br/>
+
+             Example: ".container  div #myId" will select an id called myId which is inside a div tag of a class called container.<br/>
+
+             Any valid CSS selectors are allowed.
+
+           </span>
+
+            <i class="fa fa-circle-question" aria-hidden="true"></i>
+
+          </span>
+
+          </span>
+
+         <span class="inputErr" id="customValErr">
+
+          Please enter your custom value
+
+        </span>
+
+        </div>
+
+        <div class="field">
+
+        <label for="option">What do u want to scrape:</label>
+
+        <br/><br/>
+
+        <div id="selectOption">Scrape 
+
+        <span id="tagToSearch">
+
+        </span>
+
+        <div id="optArrow">
+
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
+
+        </div>
+
+        </div>
+
+        <ul id="options">
+
+          <li onclick="setOption('Links')">Links</li>
+
+          <hr/>
+
+          <li onclick="setOption('Table')">Table</li>
+
+          <hr/>
+
+          <li onclick="setOption('Images')">Images</li>
+
+          <hr/>
+
+          <li onclick="setOption('Custom Value')">Custom value based on Id, class or tag name </li>
+
+        </ul>
+
+        </div>
+
+        <button id="submitBtn" type="button" onclick="submitForm()">Submit</button>
+
+      </div>
+
+   
+
+   <!-- Here starts the dynamic fetched data -->
+
+   
+
+    <div id="doctContent" class="code-content-all" style="display:none;">
+
+      <h4 class="sub-heading ">HTML of the webpage</h4>
+
+      <div class="code-box">
+
+        <pre class="text-code" id="code-doc-1">HTML code of Webpage
+
+        </pre>
+
+        <span class="download"><i class="fa fa-file-arrow-down"></i>
+
+        <span style="margin-left:4px;">Download HTML</span>
+
+        </span>
+
+      </div>
+
+    </div> 
+
+    <div id="htmContent" class="code-content-all" style="display:none;">
+
+      <h4 class="sub-heading ">HTML Response of the requested query</h4>
+
+      <div class="code-box">
+
+        <pre class="text-code" id="code-doc-2">HTML code here</pre>
+
+        <span class="download"><i class="fa fa-file-arrow-down"></i>
+
+        <span style="margin-left:4px;">Download HTML</span>
+
+        </span>
+
+      </div>
+
+    </div> 
+
+    <div id="jsonContent" class="code-content-all" style="display:none;">
+
+      <h4 class="sub-heading ">
+
+        JSON Response of requested query
+
+      </h4>
+
+      <div class="code-box">
+
+        <pre class="text-code" id="code-doc-3">JSON code here</pre>
+
+        <span class="download"><i class="fa fa-file-arrow-down"></i>
+
+        <span style="margin-left:4px;">Download JSON</span>
+
+        </span>
+
+      </div>
+
+     </div>
+
+    <div id="textContent" class="code-content-all" style="display:none;">
+
+      <h4 class="sub-heading ">
+
+        Text of requested query
+
+      </h4>
+
+      <div class="code-box">
+
+        <pre class="text-code" id="code-doc-4">Text of fetched query</pre>
+
+        <span class="download"><i class="fa fa-file-arrow-down"></i>
+
+        <span style="margin-left:4px;">Download Text</span>
+
+        </span>
+
+      </div>
+
+     </div>
+
+   <!-- Here starts the dynamic fetched data -->   
+
+    
+
+    <article id="about" class="about-article">
+
+      <h3 class="main-heading">About our Tool</h3>
+
+      <p>
+
+        This tool is made for people who want to scrape the HTML or text content of a web page, people have a lot of difficulty scraping the content of a website. People usually scrape content from the webpage manually that stress our eyes, or they spend thousands or dollars in paid tools. This is boring, right? So for this purpose, we Tool will help you to scrape HTML or text content from any webpage on the Internet and download them for free.
+
+      </p>
+
+    </article>
+
+    <span class='downloaded'>Downloading File...</span>
+
+    <span onclick="goTop()" id="goToTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+
+  </section>
+
+</main>
+
+<footer id="contact">
+
+  <h2 class="main-heading">Contact us</h2>
+
+  <article class="footer-about">
+
+    <h3 class="sub-heading">About : </h3>
+
+    <p>
+
+      This is Sam Nice to meet you.
+
+      Am a Virtual person, who dont had any feelings and My creator Name is "Mirza"
+
+    </p>
+
+  </article>
+
+  <section>
+
+    <h3 class="sub-heading">Tool Details:</h3>
+
+    <div class="about-tool-details">
+
+      <p>
+
+        Name
+
+      </p>
+
+      <p>
+
+        : Sam
+
+      </p>
+
+      <p>
+
+        Contributors
+
+      </p>
+
+      <a href="https://github.com/Mirza-Glitch">: Mirza ,</a>
+
+      <p></p>
+
+      <p style="margin-left:7px;">
+
+        <a href="https://github.com/cuber-dev">cuber-dev</a>
+
+      </p>
+
+      <p>
+
+        Community
+
+      </p>
+
+      <a href="https://t.me/Web_LearnerX">: Web_LearnerX</a>
+
+    </div>
+
+  </section>
+
+  <h2 class="main-heading">Thanks For using our Tool</h2>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
