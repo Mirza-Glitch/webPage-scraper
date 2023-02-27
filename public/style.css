@@ -372,7 +372,8 @@ main .code-box::after{
 }
 /* pre tag holds the text-code */
 main .text-code{
-    height: 28rem;
+    height: auto;
+    max-height: 28rem;
     width: 100%;
     padding: 1rem 0;
     font-size: calc(var(--default) - .1rem) ;
