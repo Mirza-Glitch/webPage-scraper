@@ -65,7 +65,6 @@ export async function fetchImages(obj) {
         alt: $(element).attr("alt"),
       });
     });
-    console.log(links);
     return { Htm: body, Json: links, Type: "img" };
   } catch (e) {
     console.log(e);
