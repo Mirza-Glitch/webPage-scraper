@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+/* ================================== General styles ========================================== */
+
+:root {
+  /* Default styles*/
+  --pc-font: 16px;
+  --mobile-font: 14px;
+  --default: .9rem;
+  --default-width: min(98%,550px);
+  /* varient 1 is for Header */
+  --font-var1: 'Lato', sans-serif;
+  
+  /* variant 2 is for default text */
+  --font-var2: sans-serif;
+  
+  /* Varient 3 is for sub headings */
+  --font-var3: 'Roboto',sans-serif;
+  --font-var3-size: clamp( 20px,  1.4vw , 24px); 
+  
+  --line-height: 25px; 
+}
+
+/* Updated font size for larger screens */
+@media screen and (min-width: 768px) {
+  :root {
+    --pc-font: 18px;
+    --mobile-font: 16px;
+    --font-var3-size: clamp( 22px,  1.2vw , 26px); 
+  }
+}
+html {
+  scroll-padding: 110px;
+  scroll-behavior: smooth;
+}
+/*===== converted all font size to clamp =========================*/
+
+  body {
+    /* background-color: #0c0c0c; */
+    background-image: url(bg1.png);
+    padding-top: 101px;
+    font-size: clamp(var(--mobile-font), 1.2vw, var(--pc-font));
+
+  }
+
+/* ==================== Default styles ============================== */
+
+*{   
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-var2);
+    word-wrap: break-word;
+    text-overflow: clip;
+    text-decoration: none;
+    list-style: none;
+}
+p{
+    text-align: justify;
+    line-height: var(--line-height);
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* This is for all sub headings */
+.sub-heading{
+  margin: var(--default) 0;
+  font-family: var(--font-var2);
+  font-weight: bold; 
+}
+
+
+
+/* Default styles for focus and z-index */
+:focus{
+  outline: none;
+}
+
+:is(nav,a,li,ul,label){
+  z-index: 12;
+  outline: none;
+}
+/* ====================================== */
+
+/* ================= Scroll bar styles ========================== */
+::-webkit-scrollbar{
+  height: 5px;
+  width: 5px;
+}
+::-webkit-scrollbar-track{
+  background: none; 
+}
+::-webkit-scrollbar-thumb{
+  background: lightgrey;
+  border-radius: 100vw; 
+}
+@supports (scrollbar-color: grey white){
+  *{
+    scrollbar-color: lightgrey none; 
+    scrollbar-width: thin;
+  }
+}/*========================================================================================= */
+
+
+
+
+        /* ================================== Header styles ========================================== */
+        header{
+          position: fixed;
+          top:0;
+          left:0;
+          right:0;
+          background-color: #444343;
+          color: white;
+          letter-spacing: 3px;
+          text-shadow: -1px 1px 5px #5c4a4a;
+          padding: 1.5rem 2rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          z-index: 20;
+      }
+      header h1{     
+          text-align: left; 
+          font-family: var(--font-var1);
+      }
+      header input{
+        display: none;
+      }
+      header nav li, nav label{
+          display: inline-block;
+          margin-right: 1rem;
+          cursor: pointer;
+      }
+      header nav a, nav label{
+          padding: .5rem;
+          transition: all 300ms linear;
+      }
+      header nav #main-nav-ul{
+          display: flex;
+      }
+      header nav .parent-of-inline-ul{
+          position: relative;
+      }
+      header nav .inline-nav-ul{
+          position: absolute;
+          top: 65px;
+          left: 0px;
+          display: inline-flex;
+          flex-direction: column;
+          background-color: none;
+          white-space: nowrap;
+          opacity: 0;
+      }
+      header nav .inline-nav-ul li{
+        padding: 12px;
+      }
+      .inline-nav-ul *{
+          background-color: #444343;
+      }
+      /* =====================================
+      This active link is for 
+      highlighting the selected I'd and it is for 
+      both PC and mobile viewport 
+      ==========================================*/
+      
+      #nav .active-link {
+          border-bottom:1px solid white ;
+          background-color: #292727;
+      } 
+       #nav ul:hover > li > a:not(:hover) {
+         border: none;
+         background: none; 
+       }
+      #nav [id="tool-check"]:checked + label + .inline-nav-ul {
+          opacity: 1;
+      }
+
+/* ================================== Main styles ========================================== */
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    row-gap: 2rem;
+    padding: 25px;
+}
+
+
+main .sections-container{
+    background-color: #ece9e9;
+    display: grid;
+    row-gap: 1rem;
+    width: var(--default-width) ;
+    border-radius: var(--default);
+    padding: var(--default);
+}
+
+/* Main headings */
+main .main-heading{
+   display: inline-block;
+   margin: var(--default) 0;
+   font-family: var(--font-var3);
+   font-size: var(--font-var3-size);
+}
+
+/* here comes the styles of form */
+main .form{
+  position: relative;
+  padding: 2rem 16px;
+  border: 1px solid #b1b1b1;
+  border-radius: 10px;
+}
+
+main .form label{
+  font-size: 13px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+main .form .question{
+  position: relative;
+  left: 10px;
+  top: 15px;
+}
+
+main .form .question-tip-text {
+  opacity: 0;
+  position: absolute;
+  top: 1rem;
+  right: 4px;
+  z-index: 1;
+  height: auto;
+  width: 200px;
+  color: white;
+  background-color: #192733;
+  padding: 5px;
+  border-radius: 4px;
+}
+.question:hover .question-tip-text {
+  opacity: 1;
+}
+.top {
+  top: -30px;
+  right: 30%;
+}
+
+
+main .form input{
+  padding: 6px;
+  height: 1.5rem;
+  width: auto;
+  max-width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  margin: 6px 0;
+}
+
+main .form .field{
+  margin: 8px 0;
+}
+
+main .form .inputErr{
+  font-size: 12px;
+  color: #ff0000;
+  font-weight: 500;
+  display: block;
+  display: none;
+}
+
+main .form #selectOption{
+  margin: 0;
+  display: inline-block;
+  padding: 8px 5px;
+  height: auto;
+  width: auto;
+  max-width: 74%;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.form #selectOption .optArrow{
+  padding: 0 2px;
+}
+
+main .form .field #options{
+  display: none;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 6px;
+  padding: 10px 6px;
+  margin-bottom: 3rem;
+  height: 8rem;
+  z-index: 6;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#options li{
+  height: 2.5rem;
+  padding: 6px 12px;
+}
+
+#options li:hover {
+  background-color: rebeccapurple;
+  color: white;
+  border-radius: 4px;
+}
+
+main .form .field #options hr{
+  width: 98%;
+  margin: 0 1%;
+  opacity: 0.4;
+}
+
+main .form .field #optArrow{
+  width: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .form #submitBtn{
+  width: 4.5rem;
+  height: 2rem;
+  color: white;
+  background-color: rebeccapurple;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  margin: 6px;
+  position: absolute;
+  right: 10px;
+  bottom: 2.2rem;
+}
+
+/* this code-content-all class contains the 
+   code-box container and code pre tag */
+main .code-content-all{
+    width: 100%;
+    overflow: auto;
+}
+
+main .code-box{
+    padding: 1rem .5rem 5px .5rem;
+    margin: 5px 0;
+    background-color: #e7e4e4;
+    border-radius: 10px;
+    height: auto;
+    position: relative;
+    overflow: auto;
+}
+main .code-box::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left:0;
+  height: 1.5rem;
+  width: 100%;
+  background-color: rebeccapurple;
+}
+/* pre tag holds the text-code */
+main .text-code{
+    height: 28rem;
+    width: 100%;
+    padding: 1rem 0;
+    font-size: calc(var(--default) - .1rem) ;
+    overflow: auto;
+}
+
+
+/* =================================== download btn styles ================================ */
+main .download {
+    position: absolute;
+    top: 0px;
+    right: 2px;
+    padding: 5px;
+    z-index: 5;
+    font-size: calc(var(--default) - .1rem);
+    color: white;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* this class only works when clicked on.copy */
+main .show-download {
+  animation: show 2s ease-in forwards 1;
+}
+
+@keyframes show {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+/* This tool tip will appear when 
+   clicked on.copy*/
+.downloaded {
+  position: fixed;
+  bottom: 40px;
+  left: 30%;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  opacity: 0;
+  transition: all 300ms ease-in;
+}
+
+main .about-article {
+  width: var(--default-width);
+  height: max-content;
+  background-color: #ece9e9;
+  border-top: 0.5px solid #000;
+  line-height: 25px 0;
+}
+
+main #goToTop{
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  height: 3rem;
+  width: 3rem;
+  background-color: #333333;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 300ms;
+  color: white;
+  font-size: 18px;
+  z-index: 8;
+  opacity: 0;
+}
+
+/* ================================== Footer styles ========================================== */
+
+footer{
+    margin-top: 200px;
+    background-color: #444343;
+    padding: 1.5rem 1rem;
+    color: white;
+}
+footer .main-heading{
+    text-align: center;
+    text-decoration: underline;
+}
+
+footer > *:not(.main-heading){
+    width: 350px;
+    border-radius: var(--default);
+    padding: var(--default);
+    color: #e7e4e4;
+}
+footer .footer-about{
+  line-height: var(--line-height); 
+}
+footer .about-tool-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    line-height:var(--line-height);
+}
+
+/* =================================== Mobile styles ======================================*/
+@media (max-width:768px){
+    header {
+      display: block;
+      padding: 1.5rem .1rem;
+    }
+    header h1{
+        text-align: center;
+    }
+    header .nav-button {
+        display: inline-block;
+        cursor: pointer;
+        position: absolute; 
+        top: 1.5rem;
+        right: 1rem;
+        background: transparent; 
+        border: none; 
+        transition: all 500ms ease;
+    }
+    .nav-button .btn-line {
+        width: 30px;
+        height: 3px;
+        background: #ffffff;
+        margin: 5px 0;
+        display: block; 
+        border-radius: 5px;
+        transition: all 300ms ease;
+    }
+    /* ==== hamburger menu animation ======== */
+    #nav-button-check:checked + .nav-button .btn-line:nth-of-type(1) {
+    transform: rotate(-40deg) translate(-5px, 6px);
+    }
+    #nav-button-check:checked + .nav-button .btn-line:nth-of-type(2) {
+    opacity: 0;
+    }
+    #nav-button-check:checked + .nav-button .btn-line:nth-of-type(3) {
+    transform: rotate(40deg) translate(-6px, -6px);
+    }
+    
+    /*==================== Nav styles ===============================*/
+    #nav li, #nav label{
+        display: block;
+        margin-right: 0rem;
+        cursor: pointer;
+        background: transparent;
+        border: transparent;
+    }
+
+    #nav :is(a,label){
+        display: block;
+        color: white; 
+        font-weight: bold; 
+        padding: 0px; 
+        margin: 3px;
+        outline:none;
+        background: transparent;
+    }
+
+    #nav{
+        position:fixed;
+        top: 81.5px;
+        right:-5px;
+        left:-5px;
+        background: black;
+        border-radius:0 0 1rem 1rem;
+        line-height: 35px; 
+        overflow: hidden;
+        height: 0;
+        padding: 0 1rem;
+        transition: 300ms; 
+        text-align: left;
+    }
+    #nav ul li{
+        padding: 4px 0;
+    }
+    #nav .inline-nav-ul{
+        position: relative;
+        top: 0;
+        left: 0;
+        display: none;
+        background: transparent;
+        border: none;
+        margin: 3px 25px;
+        overflow: hidden;
+    }
+    /* ================= events of inline ul ================================ */
+
+    #nav [id="tool-check"]:checked + label + .inline-nav-ul {
+        display: block;
+    }
+    /* =========================================================== */
+    
+    main .copied{
+        left: 30%;
+    }
+        
+    footer{
+      padding: .5rem;
+      padding-bottom: 1rem;
+    }
+    footer > *:not(.main-heading){
+        width: auto;
+    }
+}
+/* ======================================== END ========================================== */
