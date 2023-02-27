@@ -131,7 +131,7 @@ function submitForm() {
   };
   if (checkFormData(obj)) {
     submitBtn.innerText = "fetching...";
-    fetch("http://localhost:3000/api/scrape", {
+    fetch("/api/scrape", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
